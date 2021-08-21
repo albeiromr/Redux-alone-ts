@@ -10,8 +10,18 @@ const guarantiesState:guarantiesInterface = {
   totallyLostProducts: 10,
 }
 
-const guarantiesReducer = (state = guarantiesState, action: redux.Action):guarantiesInterface => {
+interface action extends redux.Action {
+  type: string;
+  payload?: number
+}
+
+const guarantiesReducer = (state = guarantiesState, action: action):guarantiesInterface => {
     switch (action.type) {
+      case "receive guaranties":
+        return {
+          ...state,
+          productsToReturn: state.productsToReturn += action.payload!
+        }
       default:
         return state;
     }

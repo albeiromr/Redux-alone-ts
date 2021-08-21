@@ -6,15 +6,15 @@ interface producStateInterface {
   defectiveProducts: number;
 }
 
-interface action extends redux.Action {
-  type: string;
-  payload: number;
-}
-
 const productsState: producStateInterface = {
   totalInventory: 40,
   productsToSell: 30,
   defectiveProducts: 10,
+}
+
+interface action extends redux.Action {
+  type: string;
+  payload?: number;
 }
 
 
@@ -23,14 +23,20 @@ const productsReducer = (state:producStateInterface = productsState, action: act
         case "buy product":
             return {
                 ...state,
-                totalInventory: state.totalInventory -= action.payload,
-                productsToSell: state.productsToSell -= action.payload
+                totalInventory: state.totalInventory -= action.payload!,
+                productsToSell: state.productsToSell -= action.payload!
             }
         case "send to guarantie":
             return {
                 ...state,
-                defectiveProducts: state.defectiveProducts -= action.payload
+                defectiveProducts: state.defectiveProducts -= action.payload!
             }
+        case "mark as defective":
+          return{
+            ...state,
+            productsToSell: state.productsToSell -= action.payload!,
+            defectiveProducts: state.defectiveProducts += action.payload!
+          }
         default:
             return state;
     }
