@@ -1,0 +1,19 @@
+{
+  "name": "redux-individual-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/redux": "^3.6.0",
+    "typescript": "^4.3.5"
+  }
+}
